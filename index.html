@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MeshRipple generates meshes with high surface fidelity and topological completeness.">
+  <meta name="keywords" content="Autoregressive mesh generation, 3D shape generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeshRipple: Structured Autoregressive Generation of Artist-Meshes</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="./static/js/gtag.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link rel="stylesheet" href="./static/css/font.googleapis.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="./static/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script src="./static/js/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script type="module">
+    import {addHighLightResult} from "./static/js/highLightResult.js"
+    addHighLightResult();
+  </script>
+  <script type="module">
+    import {addRoomResult} from "./static/js/roomResult.js"
+    addRoomResult();
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <!-- home page -->
+      <a class="navbar-item" href="./index.html">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- other project -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="./index.html">
+            MeshRipple
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MeshRipple: Structured Autoregressive Generation of Artist-Meshes</h1>
+          <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Junkai_Lin1">Junkai Lin</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Hang_Long1">Hang Long</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Huipeng_Guo2">Huipeng Guo</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Jielei_Zhang2">Jielei Zhang</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~JiaYi_Yang9">JiaYi Yang</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Tianle_Guo1">Tianle Guo</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://openreview.net/profile?id=~Yang_Yang135">Yang Yang</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="./index.html">Jianwen Li</a><sup>2</sup>, </span>
+              <span class="author-block"><a href="./index.html">Wenxiao Zhang</a><sup>2</sup>, </span>
+              <span class="author-block"><a href="https://niessnerlab.org">Matthias Nießner</a><sup>3</sup>, </span>
+              <span class="author-block"><a href="https://weiyang-hust.github.io">Wei Yang</a><sup>1, †</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Huazhong University of Science and Technology, </span>
+            <span class="author-block"><sup>2</sup>Independent Researcher, </span>
+            <span class="author-block"><sup>3</sup>Technical University of Munich</span>
+          </div>
+          
+          <!-- todo -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="./static/pdf/meshripple_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+
+              <!-- Paper Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/xxxx"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="xxx"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MayMhappy/MeshRipple"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="None"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+
+              <!-- Checkpoint Link. -->
+              <!-- <span class="link-block">
+                <a href="None"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-folder-open"></i>
+                  </span>
+                  <span>Checkpoint</span>
+                  </a>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- teaser part -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img
+        id="teaser_img"
+        src="./static/images/teaser_final.png"
+        alt="Teaser"/>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">MeshRipple</span> generates meshes with high surface fidelity and topological completeness.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- high light objects -->
+<section class="hero is-light is-small">
+  <div class="hero-body is-centered has-text-centered">
+    <h2 class="title is-3">High-Light Results</h2>
+
+    <div class="obj-viewer-container">
+      <button class="obj-viewer-button" id="obj-viewer-container-prev"><</button>
+
+      <div class="obj-pc-pair">
+        <div id="obj-viewer-1" class="obj-viewer"></div>
+        <div id="obj-viewer-2" class="obj-viewer"></div>
+      </div>
+
+      <div class="obj-pc-pair">
+        <div id="obj-viewer-3" class="obj-viewer"></div>
+        <div id="obj-viewer-4" class="obj-viewer"></div>
+      </div>
+
+      <div class="obj-pc-pair">
+        <div id="obj-viewer-5" class="obj-viewer"></div>
+        <div id="obj-viewer-6" class="obj-viewer"></div>
+      </div>
+
+      <div class="obj-pc-pair">
+        <div id="obj-viewer-7" class="obj-viewer"></div>
+        <div id="obj-viewer-8" class="obj-viewer"></div>
+      </div>
+
+      <button class="obj-viewer-button" id="obj-viewer-container-next">></button>
+    </div>
+
+    <div id="obj-viewer-container-label" style="margin-top: 1vmin;">None</div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Meshes serve as a primary representation for 3D assets.
+            Autoregressive mesh generators serialize faces into sequences and train on truncated segments with sliding-window inference to cope with memory limits.
+            However, this mismatch breaks long-range geometric dependencies, producing holes and fragmented components. 
+            To address this critical limitation, we introduce <span class="dnerf">MeshRipple</span>, which expands a mesh outward from an active generation frontier, akin to a ripple on a surface.
+          </p>
+          <p>
+            <span class="dnerf">MeshRipple</span> rests on three key innovations: a frontier-aware BFS tokenization that aligns the generation order with surface topology; an expansive prediction strategy that maintains coherent, connected surface growth; and a sparse-attention global memory that provides an effectively unbounded receptive field to resolve long-range topological dependencies.
+            This integrated design enables <span class="dnerf">MeshRipple</span> to generate meshes with high surface fidelity and topological completeness, outperforming strong recent baselines.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- todo -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract Video</h2>
+        <div class="publication-video">
+          <video id="total-video"
+                 autoplay="autoplay"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/total.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method</h2>
+        <img
+          id="teaser_img"
+          src="./static/images/pipeline.jpg"
+          alt="Teaser"/>
+        <div class="content has-text-justified">
+          <p>
+            <b>Fig. Overview of MeshRipple.</b> 
+            The input mesh is first serialized into a token sequence via <b>Ripple Tokenization</b>, which is then truncated into fixed-length segments as input to a structured autoregressive model. 
+            The model employs hourglass layers at both ends to convert between vertex and face tokens. The core consists of a stack of 2 × <var>N</var> identical blocks, each comprising a <b>Frontier-Attention</b> layer, a self-attention layer, a cross-attention layer for point-cloud conditioning (omitted for clarity), and a <b>Native Sparse Contextual Attention</b> layer that attends to the full mesh sequence under a causal mask. 
+            The middle hidden states are additionally fed into a lightweight head to predict the next root face to expand.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Our framework aims to generate large, structurally coherent artist-style meshes under truncated autoregressive (AR) training. 
+            It consists of two key components: (i) <b>Ripple Tokenization</b>, which couples a breadth-first face ordering with an explicit dynamically maintained frontier, such that the structurally relevant context for the next face prediction is concentrated near the tail of the sequence; 
+            and (ii) <b>an structured autoregressive transformer</b> with frontier attention and a lightweight context attention that jointly predicts the next face attached to current root face, 
+            and the subsequent root face on the frontier to expand.
+          </p>
+        </div>
+
+        <img
+           id="tokenizer_img"
+           src="./static/images/tokenizer.jpg"
+           alt="Tokenizer"
+           style="width: 60%; height: auto; display: block; margin-left: auto; margin-right: auto;" /> 
+        <div class="content has-text-justified">
+          <p>
+              <b>Illustration of Ripple Tokenization.</b> 
+              At each step, the current root face expands following the counterclockwise half-edge order. Faces that still have unvisited neighbors remain in the FIFO frontier queue; once all neighbors are visited, the face is popped from the queue.
+          </p>
+        </div>
+        
+        <!-- todo -->
+        <!-- <video id="tokenizer-video"
+          autoplay="autoplay" loop="loop"
+          playbackRate="2"
+          controls
+          muted
+          preload
+          playsinline
+          width="75%">
+          <source src="./static/videos/token.mp4" type="video/mp4">
+        </video> -->
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Cmp. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison</h2>
+        <img
+          id="cmp_img"
+          src="./static/images/mesh_compare_v9.jpg"
+          alt="Cmp"/>
+        <div class="content has-text-justified">
+          <p>
+            <b>Qualitative comparison of point cloud-conditioned generation between MeshRipple and baselines.</b> 
+            Baselines inevitably produce broken surfaces and holes, whereas MeshRipple yields more complete and coherent geometries.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Cmp. -->
+  </div>
+</section>
+
+<!-- room display -->
+<section class="hero is-light is-small">
+  <div class="hero-body is-centered has-text-centered">
+    <h2 class="title is-3">Room Generation Results</h2>
+    <div class="floorplan-obj-viewer-container">
+      <img id="floorplan-viewer-1" class="floorplan-viewer" style="grid-row: 1; grid-column: 1; transform: rotate(-90deg);"/>
+      <div id="room-viewer-1" class="room-viewer" style="grid-row: 1; grid-column: 2;"></div>
+      <img id="floorplan-viewer-2" class="floorplan-viewer" style="grid-row: 1; grid-column: 3; transform: rotate(-90deg);"/>
+      <div id="room-viewer-2" class="room-viewer" style="grid-row: 1; grid-column: 4;"></div>
+      <img id="floorplan-viewer-3" class="floorplan-viewer" style="grid-row: 1; grid-column: 5; transform: rotate(-90deg);"/>
+      <div id="room-viewer-3" class="room-viewer" style="grid-row: 1; grid-column: 6;"></div>
+
+      <img id="floorplan-viewer-4" class="floorplan-viewer" style="grid-row: 2; grid-column: 1/3; transform: rotate(-90deg);"/>
+      <div id="room-viewer-4" class="room-viewer" style="grid-row: 2; grid-column: 3/5;"></div>
+      <div id="room-viewer-5" class="room-viewer" style="grid-row: 2; grid-column: 5/7;"></div>
+
+      <button id="floorplan-obj-viewer-container-next" class="room-viewer-button" style="grid-row: 3; grid-column: 1/7;">Next</button>
+    </div>
+  </div>
+</section>
+
+<!-- todo -->
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>Unavailable Now</code></pre>
+  </div>
+</section> -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/pdf/meshripple_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <a class="icon-link" href="https://github.com/MayMhappy/MeshRipple" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is constructed using the source code provided by
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, 
+            and we are grateful for their template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
