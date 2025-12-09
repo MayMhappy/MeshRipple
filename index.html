@@ -7,7 +7,8 @@
   <meta name="keywords" content="Autoregressive mesh generation, 3D shape generation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MeshRipple: Structured Autoregressive Generation of Artist-Meshes</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+  <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"> -->
+  <link rel="icon" href="./static/images/ripple.png">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="./static/js/gtag.js"></script>
@@ -27,8 +28,7 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="./static/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <script src="./static/js/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -86,15 +86,15 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">MeshRipple: Structured Autoregressive Generation of Artist-Meshes</h1>
           <div class="is-size-5 publication-authors">
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Junkai_Lin1">Junkai Lin</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Hang_Long1">Hang Long</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Huipeng_Guo2">Huipeng Guo</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Jielei_Zhang2">Jielei Zhang</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~JiaYi_Yang9">JiaYi Yang</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Tianle_Guo1">Tianle Guo</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="https://openreview.net/profile?id=~Yang_Yang135">Yang Yang</a><sup>1</sup>, </span>
-              <span class="author-block"><a href="./index.html">Jianwen Li</a><sup>2</sup>, </span>
-              <span class="author-block"><a href="./index.html">Wenxiao Zhang</a><sup>2</sup>, </span>
+              <span class="author-block"><a href="https://github.com/MayMhappy">Junkai Lin</a><sup>1</sup>, </span>
+              <span class="author-block"><a href="https://github.com/LoHhhha">Hang Long</a><sup>1</sup>, </span>
+              <span class="author-block">Huipeng Guo<sup>1</sup>, </span>
+              <span class="author-block">Jielei Zhang<sup>1</sup>, </span>
+              <span class="author-block">Jiayi Yang<sup>1</sup>, </span>
+              <span class="author-block">Tianle Guo<sup>1</sup>, </span>
+              <span class="author-block">Yang Yang<sup>1</sup>, </span>
+              <span class="author-block"><a href="mailto:jianwenli.ai@gmail.com">Jianwen Li</a><sup>2</sup>, </span>
+              <span class="author-block"><a href="mailto:forever.wx.zhang@gmail.com">Wenxiao Zhang</a><sup>2</sup>, </span>
               <span class="author-block"><a href="https://niessnerlab.org">Matthias Nießner</a><sup>3</sup>, </span>
               <span class="author-block"><a href="https://weiyang-hust.github.io">Wei Yang</a><sup>1, †</sup></span>
           </div>
@@ -108,26 +108,26 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <!-- <span class="link-block">
-                <a href="./static/pdf/meshripple_paper.pdf"
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2512.07514"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
-              </span> -->
+              </span>
 
               <!-- Paper Link. -->
-              <!-- <span class="link-block">
-                <a href="https://arxiv.org/abs/xxxx"
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2512.07514"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span> -->
+              </span>
 
               <!-- Video Link. -->
               <!-- <span class="link-block">
@@ -184,10 +184,20 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img
-        id="teaser_img"
-        src="./static/images/teaser_final.png"
-        alt="Teaser"/>
+      <!-- <img
+      id="teaser_img"
+      src="./static/images/teaser_final.png"
+      alt="Teaser"/> -->
+      <div class="publication-video">
+        <video id="teaser-video"
+          autoplay="autoplay"
+          controls
+          muted
+          preload
+          playsinline>
+          <source src="./static/videos/teaser.mp4" type="video/mp4">
+        </video>
+      </div>
       <h2 class="subtitle has-text-centered">
         <span class="dnerf">MeshRipple</span> generates meshes with high surface fidelity and topological completeness.
       </h2>
@@ -198,10 +208,10 @@
 <!-- high light objects -->
 <section class="hero is-light is-small">
   <div class="hero-body is-centered has-text-centered">
-    <h2 class="title is-3">High-Light Results</h2>
+    <h2 class="title is-3">Highlight Results</h2>
 
     <div class="obj-viewer-container">
-      <button class="obj-viewer-button" id="obj-viewer-container-prev"><</button>
+      <button class="column-button" id="obj-viewer-container-prev"><</button>
 
       <div class="obj-pc-pair">
         <div id="obj-viewer-1" class="obj-viewer"></div>
@@ -223,7 +233,7 @@
         <div id="obj-viewer-8" class="obj-viewer"></div>
       </div>
 
-      <button class="obj-viewer-button" id="obj-viewer-container-next">></button>
+      <button class="column-button" id="obj-viewer-container-next">></button>
     </div>
 
     <div id="obj-viewer-container-label" style="margin-top: 1vmin;">None</div>
@@ -315,7 +325,6 @@
           </p>
         </div>
         
-        <!-- todo -->
         <!-- <video id="tokenizer-video"
           autoplay="autoplay" loop="loop"
           playbackRate="2"
@@ -359,37 +368,93 @@
   <div class="hero-body is-centered has-text-centered">
     <h2 class="title is-3">Room Generation Results</h2>
     <div class="floorplan-obj-viewer-container">
-      <img id="floorplan-viewer-1" class="floorplan-viewer" style="grid-row: 1; grid-column: 1; transform: rotate(-90deg);"/>
-      <div id="room-viewer-1" class="room-viewer" style="grid-row: 1; grid-column: 2;"></div>
-      <img id="floorplan-viewer-2" class="floorplan-viewer" style="grid-row: 1; grid-column: 3; transform: rotate(-90deg);"/>
-      <div id="room-viewer-2" class="room-viewer" style="grid-row: 1; grid-column: 4;"></div>
-      <img id="floorplan-viewer-3" class="floorplan-viewer" style="grid-row: 1; grid-column: 5; transform: rotate(-90deg);"/>
-      <div id="room-viewer-3" class="room-viewer" style="grid-row: 1; grid-column: 6;"></div>
+      <h2 class="subtitle" style="grid-row: 1; grid-column: 1/6;">Floorplan Conditioned Generation</h2>
+      <button id="fov-container-left" class="column-button" style="grid-row: 2; grid-column: 1;"><</button>
+      <img id="floorplan-viewer-1" class="floorplan-viewer" style="grid-row: 2; grid-column: 2; transform: rotate(-90deg);"/>
+      <div id="room-viewer-1" class="room-viewer" style="grid-row: 2; grid-column: 3;"></div>
+      <img id="floorplan-viewer-2" class="floorplan-viewer" style="grid-row: 2; grid-column: 4; transform: rotate(-90deg);"/>
+      <div id="room-viewer-2" class="room-viewer" style="grid-row: 2; grid-column: 5;"></div>
+      <button id="fov-container-right" class="column-button" style="grid-row: 2; grid-column: 6;">></button>
+    </div>
+    <div style="margin: 2vmin;"></div>
+    <div class="floorplan-obj-obj-viewer-container">
+      <h2 class="subtitle" style="grid-row: 1; grid-column: 1;">Floorplan</h2>
+      <h2 class="subtitle" style="grid-row: 1; grid-column: 2;">Room Shell</h2>
+      <h2 class="subtitle" style="grid-row: 1; grid-column: 3;">Furniture Inserted</h2>
+      <img id="floorplan-viewer-3" class="floorplan-viewer" style="grid-row: 2; grid-column: 1; transform: rotate(-90deg);"/>
+      <div id="room-viewer-3" class="room-viewer" style="grid-row: 2; grid-column: 2;"></div>
+      <div id="room-viewer-4" class="room-viewer" style="grid-row: 2; grid-column: 3;"></div>
 
-      <img id="floorplan-viewer-4" class="floorplan-viewer" style="grid-row: 2; grid-column: 1/3; transform: rotate(-90deg);"/>
-      <div id="room-viewer-4" class="room-viewer" style="grid-row: 2; grid-column: 3/5;"></div>
-      <div id="room-viewer-5" class="room-viewer" style="grid-row: 2; grid-column: 5/7;"></div>
-
-      <button id="floorplan-obj-viewer-container-next" class="room-viewer-button" style="grid-row: 3; grid-column: 1/7;">Next</button>
+      <button id="foov-container-next" class="row-button" style="grid-row: 3; grid-column: 1/4;">Next</button>
     </div>
   </div>
 </section>
 
-<!-- todo -->
-<!-- <section class="section" id="BibTeX">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Room Generation Details</h2>
+        <div class="room-video-container">
+          <div class="column">
+            <div class="publication-video">
+              <video id="room-video"
+                    autoplay="autoplay"
+                    controls
+                    muted
+                    preload
+                    playsinline>
+                <source src="./static/videos/rooms_ge.mp4"
+                type="video/mp4">
+              </video>
+            </div>
+            <h2 class="subtitle has-text-centered">Process of Room Generation</h2>
+          </div>
+
+          <div class="column">
+            <div class="publication-video">
+              <video id="room-walk-video"
+                    autoplay="autoplay"
+                    loop="loop"
+                    controls
+                    muted
+                    preload
+                    playsinline>
+                <source src="./static/videos/room_walk.mp4"
+                type="video/mp4">
+              </video>
+            </div>
+            <h2 class="subtitle has-text-centered">Interior Details of Room</h2>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>Unavailable Now</code></pre>
+    <pre><code>@misc{lin2025meshripplestructuredautoregressivegeneration,
+      title={MeshRipple: Structured Autoregressive Generation of Artist-Meshes}, 
+      author={Junkai Lin and Hang Long and Huipeng Guo and Jielei Zhang and JiaYi Yang and Tianle Guo and Yang Yang and Jianwen Li and Wenxiao Zhang and Matthias Nießner and Wei Yang},
+      year={2025},
+      eprint={2512.07514},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.07514}, 
+}</code></pre>
   </div>
-</section> -->
+</section>
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <!-- <a class="icon-link"
-         href="./static/pdf/meshripple_paper.pdf">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2512.07514">
         <i class="fas fa-file-pdf"></i>
-      </a> -->
+      </a>
       <a class="icon-link" href="https://github.com/MayMhappy/MeshRipple" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>

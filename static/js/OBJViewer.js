@@ -187,6 +187,8 @@ function createObjViewer(containerSelector, objPath, options = {}) {
         mergeTolerance: 0.01,
         disableRecolor: false,
         fov: 38,
+        minDistance: 0.1,
+        maxDistance: 3.0,
     };
     
     const finalOptions = { ...defaultOptions, ...options };
@@ -207,6 +209,8 @@ function createObjViewer(containerSelector, objPath, options = {}) {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.autoRotate = true;
+    controls.minDistance = finalOptions.minDistance;
+    controls.maxDistance = finalOptions.maxDistance;
     controls.autoRotateSpeed = finalOptions.autoRotateSpeed;
     controls.addEventListener('start', () => { controls.autoRotate = false; });
     controls.addEventListener('end', () => { controls.autoRotate = true; });

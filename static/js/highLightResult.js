@@ -19,7 +19,7 @@ const objPairs = [
     
     // ["./static/objs/1(131)_y.obj", "./static/objs/1(131)_input_pc.obj"],
     ["./static/objs/1(133)_y.obj", "./static/objs/1(133)_input_pc.obj"],
-    ["./static/objs/1(152)_y.obj", "./static/objs/1(152)_input_pc.obj"],
+    ["./static/objs/1(152)_copy3_temp0.9_0_y.obj", "./static/objs/1(152)_input_pc.obj"],
     ["./static/objs/1(202)_y.obj", "./static/objs/1(202)_input_pc.obj"],
     ["./static/objs/1(241)_y.obj", "./static/objs/1(241)_input_pc.obj"],
     ["./static/objs/1(247)_y.obj", "./static/objs/1(247)_input_pc.obj"],

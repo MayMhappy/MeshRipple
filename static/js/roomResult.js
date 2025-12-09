@@ -24,17 +24,20 @@ const boxPairs = [
 const viewerElementIdPairs = [
     ["floorplan-viewer-1", "room-viewer-1"],
     ["floorplan-viewer-2", "room-viewer-2"],
-    ["floorplan-viewer-3", "room-viewer-3"],
 ]
 
 const allViewerElementIdPairs = [
-    ["floorplan-viewer-4", "room-viewer-4", "room-viewer-5"],
+    ["floorplan-viewer-3", "room-viewer-3", "room-viewer-4"],
 ]
 
-const nextButtonId = "floorplan-obj-viewer-container-next";
+const fovLeftButtonId = "fov-container-left";
+const fovRightButtonId = "fov-container-right";
+const foovNextButtonId = "foov-container-next";
 
 function addRoomResult(){
-    const nextButton = document.getElementById(nextButtonId);
+    const fovLeftButton = document.getElementById(fovLeftButtonId);
+    const fovRightButton = document.getElementById(fovRightButtonId);
+    const foovNextButton = document.getElementById(foovNextButtonId);
 
     const viewerPairs = viewerElementIdPairs.map((item) => {
         const imgViewer = document.getElementById(item[0]);
@@ -57,7 +60,7 @@ function addRoomResult(){
     let currentStartDisplayIdx = 0;
     let currentAllStartDisplayIdx = 0;
 
-    const update = () => {
+    const updateFov = () => {
         for(let i = 0; i < viewerPairAmount; i++){
             const objPair = boxPairs.at((currentStartDisplayIdx + i) % objPairAmount);
             if(viewerPairInfo[i] === null){
@@ -65,7 +68,7 @@ function addRoomResult(){
 
                 imgViewer.src = objPair[0];
                 const objViewerInfo = createObjViewer(
-                    objViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 35}
+                    objViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 30}
                 );
                 viewerPairInfo[i]={
                     img: imgViewer,
@@ -77,7 +80,9 @@ function addRoomResult(){
                 viewerPairInfo[i].obj.update(objPair[1]);
             }
         }
-
+    };
+    
+    const updateFoov = () => {
         for(let i = 0; i < allViewerPairAmount; i++){
             const objPair = allPairs.at((currentAllStartDisplayIdx + i) % allObjPairAmount);
             if(allViewerPairInfo[i] === null){
@@ -104,14 +109,26 @@ function addRoomResult(){
             }
         }
     };
-    update();
 
-    nextButton.onclick = () => {
+    updateFov();
+    updateFoov();
+
+    fovLeftButton.onclick = () => {
         currentStartDisplayIdx += viewerPairAmount;
         currentStartDisplayIdx %= objPairAmount;
+        updateFov();
+    }
+
+    fovRightButton.onclick = () => {
+        currentStartDisplayIdx += objPairAmount - (viewerPairAmount % objPairAmount);
+        currentStartDisplayIdx %= objPairAmount;
+        updateFov();
+    }
+
+    foovNextButton.onclick = () => {
         currentAllStartDisplayIdx += allViewerPairAmount;
         currentAllStartDisplayIdx %= allObjPairAmount;
-        update();
+        updateFoov();
     }
 }
 
