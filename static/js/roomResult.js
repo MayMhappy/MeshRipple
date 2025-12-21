@@ -68,7 +68,7 @@ function addRoomResult(){
 
                 imgViewer.src = objPair[0];
                 const objViewerInfo = createObjViewer(
-                    objViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 30}
+                    objViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 32}
                 );
                 viewerPairInfo[i]={
                     img: imgViewer,
@@ -90,10 +90,10 @@ function addRoomResult(){
 
                 imgViewer.src = objPair[0];
                 const boxViewerInfo = createObjViewer(
-                    boxViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 35}
+                    boxViewer, objPair[1], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 32}
                 );
                 const objViewerInfo = createObjViewer(
-                    objViewer, objPair[2], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 35}
+                    objViewer, objPair[2], {disableRecolor: true, autoRotateSpeed: 0.0, fov: 32}
                 );
 
                 allViewerPairInfo[i]={
