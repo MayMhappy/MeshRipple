@@ -63,6 +63,21 @@ body {
   font-weight: bolder;
 }
 
+.publication-highlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.9rem 0 0.65rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #e0c25d;
+  background: #fff8de;
+  color: #5f4700;
+  font-family: "Google Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 .publication-authors {
 }
 
