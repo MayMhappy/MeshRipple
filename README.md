@@ -132,11 +132,12 @@ We sincerely thank the following projects:
 If you find this project useful, please cite:
 
 ```bibtex
-@inproceedings{lin2026meshripple,
-  title={Meshripple: Structured autoregressive generation of artist-meshes},
-  author={Lin, Junkai and Long, Hang and Guo, Huipeng and Zhang, Jielei and Yang, JiaYi and Guo, Tianle and Yang, Yang and Li, Jianwen and Zhang, Wenxiao and Nie{\ss}ner, Matthias and others},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={12706--12718},
-  year={2026}
+@InProceedings{Lin_2026_CVPR,
+    author    = {Lin, Junkai and Long, Hang and Guo, Huipeng and Zhang, Jielei and Yang, Jiayi and Guo, Tianle and Yang, Yang and Li, Jianwen and ZHANG, Wenxiao and Nie{\ss}ner, Matthias and Yang, Wei},
+    title     = {MeshRipple: Structured Autoregressive Generation of Artist-Meshes},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2026},
+    pages     = {12706-12718}
 }
 ```
